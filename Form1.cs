@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace UofSarrePublishing
+namespace BookStore
 {
     public partial class EPOS : Form
     {
+        Manager manager = new Manager();
+
         //Declaring variables 
         string[,] books = new string[5, 4];
         string[,] distributor = new string[3, 2];
@@ -80,26 +82,16 @@ namespace UofSarrePublishing
 
         private void uiSaleButton_Click(object sender, EventArgs e)
         {
-            string[] bookCopies = new string[5] { uiBasket1000TextBox.Text, uiBasket10000TextBox.Text, uiBasketCatTextBox.Text, uiBasketWhenTextBox.Text, uiBasketEverythingTextBox.Text };
+            string[] bookCopies = new string[5] { uiBasket1000TextBox.Text, uiBasket10000TextBox.Text, uiBasketCatTextBox.Text,
+                uiBasketWhenTextBox.Text, uiBasketEverythingTextBox.Text };
             string currentDistributerID = uiCustomerNumberTextBox.Text;
-            bool customerIDExist = false;
+            
             bool makeSale = false;
             bool instock;
+            bool customerIDExist = manager.CheckCustomerId(distributor, currentDistributerID);
 
-            //check if customer ID exist
-            for(int outer = 0; outer < distributor.GetUpperBound(0) + 1; outer++)
-            {
-                for(int inner = 0; inner < distributor.GetUpperBound(1) + 1; inner++)
-                {
-                    if(currentDistributerID == distributor[outer, inner])
-                    {
-                        customerIDExist = true;
-                        break;
-                    }
-                }
-            }
-            
-            for(int i = 0; i < bookCopies.Length; i++)
+
+            for (int i = 0; i < bookCopies.Length; i++)
             {
                 bool emptyString = true;
 
@@ -187,7 +179,7 @@ namespace UofSarrePublishing
             }
 
             //sorting
-            tempOutput = Sort(tempOutput, tempAuthorSales);
+            tempOutput = manager.Sort(tempOutput, tempAuthorSales);
 
             for (int i = 0; i <= authorSales.GetUpperBound(0); i++)
             {
@@ -226,7 +218,7 @@ namespace UofSarrePublishing
                 }
                     
             }
-            outputSort = Sort(outputSort, tempTotalSort);
+            outputSort = manager.Sort(outputSort, tempTotalSort);
                 
             for (int inner = 0; inner < outputSort.Length; inner++)
             {
@@ -347,36 +339,10 @@ namespace UofSarrePublishing
             uiBasketWhenTextBox.Text = "0";
             uiBasketEverythingTextBox.Text = "0";
         }
-        public string[] Sort(string[] outputSort, double[] tempTotalSort)
+
+        private void uiDealerChartTextBox_TextChanged(object sender, EventArgs e)
         {
-            bool swaps = true;
-            while (swaps)
-            {
-                int numSwaps = 0;
-                for (int x = 0; x < tempTotalSort.Length - 1; x++)
-                {
-                    if (tempTotalSort[x + 1] > tempTotalSort[x])
-                    {
-                        double tempTS = tempTotalSort[x];
-                        string tempOS = outputSort[x];
 
-                        tempTotalSort[x] = tempTotalSort[x + 1];
-                        tempTotalSort[x + 1] = tempTS;
-
-                        outputSort[x] = outputSort[x + 1];
-                        outputSort[x + 1] = tempOS;
-
-                        numSwaps++;
-                    }
-                }
-                if (numSwaps < 1)
-                {
-                    swaps = false;
-                }
-
-            }
-            return outputSort;
         }
-
     }
 }

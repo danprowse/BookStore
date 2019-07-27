@@ -1,4 +1,4 @@
-﻿namespace UofSarrePublishing
+﻿namespace BookStore
 {
     partial class EPOS
     {
@@ -187,6 +187,7 @@
             this.uiDealerChartTextBox.Size = new System.Drawing.Size(395, 308);
             this.uiDealerChartTextBox.TabIndex = 10;
             this.uiDealerChartTextBox.TabStop = false;
+            this.uiDealerChartTextBox.TextChanged += new System.EventHandler(this.uiDealerChartTextBox_TextChanged);
             // 
             // uiDealerChartButton
             // 

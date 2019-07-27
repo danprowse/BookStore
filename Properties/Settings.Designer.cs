@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UofSarrePublishing.Properties {
+namespace BookStore.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
