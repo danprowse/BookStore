@@ -13,7 +13,7 @@ In short:
 
 ## Contributing
 Feel free to use any of this code if you find any part of it useful for your own projects.
-open to contributions as i will also be looking to improve on this code from time time and 
+Open to contributions as i will also be looking to improve on this code from time time and 
 i'm sure the rest of you will have better ways of doing things than me! :) 
 
 ## License
