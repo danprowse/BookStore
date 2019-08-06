@@ -17,4 +17,4 @@ open to contributions as i will also be looking to improve on this code from tim
 i'm sure the rest of you will have better ways of doing things than me! :) 
 
 ## License
-[MIT]
+[MIT](https://github.com/danscodingadventure/BookStore/blob/master/LICENSE)
